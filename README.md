@@ -64,7 +64,7 @@ A RESTful API built using **Node.js** and **Express** that supports **CRUD opera
 
 1. **Clone the repo**
    ```bash
-   git clone https://github.com/your-username/bookstore-api.git
+   git clone https://github.com/yashsainani/bookstore-api.git
    cd bookstore-api
    npm install
 
