@@ -1,0 +1,12 @@
+[
+  {
+    "email": "abc@gmail.com",
+    "password": "12345",
+    "_id": "7bd84561-3c60-4f71-b1be-1121fad4bd08"
+  },
+  {
+    "email": "abc@gmail.co",
+    "password": "12345",
+    "_id": "027c1b87-f889-428b-a0f8-cda4eb12f790"
+  }
+]

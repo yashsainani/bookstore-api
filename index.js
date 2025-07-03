@@ -16,9 +16,11 @@ app.use(cookieParser());
 
 // router middelware
 const userRouter = require("./routers/userRouter.js");
+const booksRouter = require("./routers/booksRouter.js");
 
 // route to API
 app.use("/user", userRouter);
+app.use("/books", booksRouter);
 
 // bad request urlencoded
 app.use("", (req, res, next) => {

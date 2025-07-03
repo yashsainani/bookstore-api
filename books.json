@@ -1,0 +1,18 @@
+[
+  {
+    "title": "sdcsjdc",
+    "author": "djvdkfv",
+    "genre": "sdcjksdc",
+    "publishedYear": 12,
+    "_id": "6158adfe-ddb8-4d15-b52a-89cddfd096ee",
+    "userId": "7bd84561-3c60-4f71-b1be-1121fad4bd08"
+  },
+  {
+    "title": "test book",
+    "author": "test author",
+    "genre": "test genre",
+    "publishedYear": 2012,
+    "_id": "91ca20e6-10c2-4093-bcaf-a30b0e886450",
+    "userId": "7bd84561-3c60-4f71-b1be-1121fad4bd08"
+  }
+]
