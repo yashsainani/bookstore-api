@@ -7,20 +7,20 @@ A RESTful API built using **Node.js** and **Express** that supports **CRUD opera
 ## 🗂 Project Structure
 
 ├── config
-│ └── env.js # Environment variables (e.g. secret key)
+│   └── env.js               # Environment variables (e.g. secret key)
 ├── controller
-│ ├── booksController.js # Book-related route handlers
-│ └── userController.js # User-related route handlers
+│   ├── booksController.js   # Book-related route handlers
+│   └── userController.js    # User-related route handlers
 ├── router
-│ ├── bookRouter.js # Book routes (CRUD + search)
-│ └── userRouter.js # User routes (register/login)
+│   ├── bookRouter.js        # Book routes (CRUD + search)
+│   └── userRouter.js        # User routes (register/login)
 ├── utils
-│ ├── utils.js # Common helpers (e.g. file read/write)
-│ ├── booksUtils.js # Book-specific logic
-│ └── userUtils.js # User-specific logic
-├── book.json # File storing all book data
-├── user.json # File storing all user data
-├── index.js # Main entry point
+│   ├── utils.js             # Common helpers (e.g. file read/write)
+│   ├── booksUtils.js        # Book-specific logic
+│   └── userUtils.js         # User-specific logic
+├── book.json                # File storing all book data
+├── user.json                # File storing all user data
+├── index.js                 # Main entry point
 ├── package.json
 └── README.md
 
