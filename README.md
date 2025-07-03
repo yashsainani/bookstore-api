@@ -5,7 +5,7 @@ A RESTful API built using **Node.js** and **Express** that supports **CRUD opera
 ---
 
 ## 🗂 Project Structure
-
+```
 ├── config
 │   └── env.js               # Environment variables (e.g. secret key)
 ├── controller
@@ -22,7 +22,7 @@ A RESTful API built using **Node.js** and **Express** that supports **CRUD opera
 ├── user.json                # File storing all user data
 ├── index.js                 # Main entry point
 ├── package.json
-└── README.md
+└── README.md```
 
 
 ---
