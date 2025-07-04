@@ -42,7 +42,7 @@ A RESTful API built using **Node.js** and **Express** that supports **CRUD opera
 - Only the user who added a book can update or delete it.
 
 ### 📚 Book Management (Protected Routes)
-- `GET /books`: List all books.
+- `GET /books`: List all books. You can also give page and limit to get list in pagination format.
 - `GET /books/:id`: Get book by ID.
 - `POST /books`: Add a new book (auto-generates UUID).
 - `PUT /books/:id`: Update a book (only if created by the same user).
@@ -100,6 +100,7 @@ A RESTful API built using **Node.js** and **Express** that supports **CRUD opera
 
     2.1 **Get All Books**
         GET /books
+        GET /books?page=pageNo&limit=limit *give query parameters for pagination list*
 
     2.2 **Search by Genre**
         GET /books/search?genre=fantasy

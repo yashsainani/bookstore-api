@@ -1,3 +1,5 @@
+const bcrypt = require("bcrypt");
+
 const credentialsChecker = (email, password, res) => {
     if (!email || !password) {
         res
@@ -41,8 +43,31 @@ const userExistanceCheck = (email, data, res) => {
     return false;
 };
 
+const passwordHashing = async (password) => {
+    try {
+        const salt = await bcrypt.genSalt(10);
+        const hashPass = await bcrypt.hash(password, salt);
+        return hashPass
+    }
+    catch (err) {
+        console.log("🚀 ~ passwordHashing ~ err:", err);
+    }
+};
+
+const passwordComparing = async (password, hashPass) => {
+    try {
+        const comparisonChk = await bcrypt.compare(password, hashPass);
+        return comparisonChk;
+    }
+    catch (err) {
+        console.log("passwordComparing Error", err);
+        return false;
+    }
+};
 module.exports = {
     credentialsChecker,
     emailChecker,
-    userExistanceCheck
+    userExistanceCheck,
+    passwordHashing,
+    passwordComparing
 }

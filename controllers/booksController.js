@@ -8,24 +8,35 @@ const { tokenChecker } = require("../utils/utils");
 const bookPath = path.join(__dirname, "..", "books.json");
 
 const getBooksList = async (req, res) => {
+    const page = req.query.page || 1;
+    const limit = req.query.limit || 10;
+    const lengthLimit = page * limit;
     try {
         await fs.access(bookPath);
         const stringData = await fs.readFile(bookPath, "utf-8");
         const data = JSON.parse(stringData);
+        if (!data) {
+            const err = new Error("There is no book in the store");
+            err.status = 204;
+            throw err;
+        }
+        const startIdx = (lengthLimit - limit);
+        const endIdx = data.length >= lengthLimit ? lengthLimit : data.length;
+        const filterData = data.slice(startIdx, endIdx);
         res
         .status(200)
         .json({
             status: 200,
             message: "Books List fetched successfully",
-            data
+            data: filterData
         })
     }
     catch (err) {
         res
-        .status(204)
+        .status(err.status || 500)
         .json({
-            status: 204,
-            message: "There is no books in the store"
+            status: err.status || 500,
+            message: err.message || "Internal Server Error"
         })
     }
 }
@@ -189,7 +200,7 @@ const deleteBook = async (req, res) => {
 };
 
 const searchBook = async (req, res) => {
-    const genre = req.query.genre;
+    const genre = req.query.genre || "";
     const tokenChk = tokenChecker(req, res);
     if (!tokenChk) return;
 

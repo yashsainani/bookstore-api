@@ -14,5 +14,13 @@
     "publishedYear": 2012,
     "_id": "91ca20e6-10c2-4093-bcaf-a30b0e886450",
     "userId": "7bd84561-3c60-4f71-b1be-1121fad4bd08"
+  },
+  {
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "genre": "Fantasy",
+    "publishedYear": 1937,
+    "_id": "b87b451a-6812-4f75-a458-e5e7cf1a0e6f",
+    "userId": "bd5b0c52-6ba9-4327-ab72-940c9b0a1b53"
   }
 ]

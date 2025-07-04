@@ -1,11 +1,12 @@
 const fs = require("node:fs").promises;
 const path = require("node:path");
+
 const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 
 const userPath = path.join(__dirname, "..", "user.json");
 
-const { credentialsChecker, userExistanceCheck, emailChecker } = require("../utils/userUtils");
+const { credentialsChecker, userExistanceCheck, emailChecker, passwordHashing, passwordComparing } = require("../utils/userUtils");
 const { SECRET_KEY } = require("../config/env");
 
 const register = async (req, res) => {
@@ -19,7 +20,8 @@ const register = async (req, res) => {
         const data = JSON.parse(stringData);
         if (userExistanceCheck(email, data, res)) return;
         const userId = uuidv4();
-        data.push({...req.body, _id: userId})
+        const hashPass = await passwordHashing(password);
+        data.push({email, password: hashPass, _id: userId})
         await fs.writeFile(userPath, JSON.stringify(data, null, 2), "utf-8")
         const token = jwt.sign({...req.body, _id: userId}, SECRET_KEY, { expiresIn: "1h" });
         res.cookie("token", token);
@@ -33,7 +35,8 @@ const register = async (req, res) => {
     }
     catch (err) {
         const userId = uuidv4();
-        const data = [{...req.body, _id: userId}];
+        const hashPass = await passwordHashing(password)
+        const data = [{email, password: hashPass, _id: userId}];
         await fs.writeFile(userPath, JSON.stringify(data, null, 2), "utf-8");
         const token = jwt.sign({...req.body, _id: userId}, SECRET_KEY, { expiresIn: "1h" });
         res.cookie("token", token);
@@ -61,12 +64,12 @@ const login = async (req, res) => {
             err.status = 401;
             throw err;
         }
-        if (user.password !== password) {
+        if (!await passwordComparing(password, user.password)) {
             const err = new Error("Password is incorrect");
             err.status = 401
             throw err;
         }
-        const token = jwt.sign({...req.body, _id: user._id}, SECRET_KEY, { expiresIn: "1h" });
+        const token = jwt.sign(user, SECRET_KEY, { expiresIn: "1h" });
         res.cookie("token", token);
         res
         .status(200)
